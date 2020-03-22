@@ -147,7 +147,7 @@ def read_api_key(API_KEY_PATH):
         return yaml.load(f)["api_key"]
 
 
-def main():
+def update_mask_info():
     config = read_config("/etc/config.yaml")
     MASK_DATA_SOURCE_PATH = config["MASK_DATA_SOURCE"]
     API_KEY = read_api_key(config["API_KEY_PATH"])
@@ -165,6 +165,3 @@ def main():
 
     with open(HTML_FILE_TARGET, "w") as f:
         f.write(final_html)
-
-
-main()

@@ -6,7 +6,6 @@ RUN apt-get update -y && \
 WORKDIR /app
 
 COPY Config/config.yaml /etc/config.yaml
-COPY util.py /apt/util.py
 
 RUN mkdir -p /app/templates
 
@@ -17,7 +16,7 @@ RUN chmod +x /apt/bin/update_mask_info.sh
 RUN crontab /etc/cron.d/update_mask_info
 RUN touch /var/log/cron.log
 
-COPY app/app.py /app/app.py
+COPY app /app
 RUN pip install Flask requests Pyaml
 
 CMD sh /apt/bin/init.sh

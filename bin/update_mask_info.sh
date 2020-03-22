@@ -1,4 +1,3 @@
 target="/var/data.json"
 url="https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json"
 curl -o ${target} ${url}
-python /apt/util.py
