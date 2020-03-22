@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>口罩地圖</h2>
+    <p>更新時間: {{ time }}</p>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>藥局名稱</th>
+          <th>地址</th>
+          <th>成人口罩庫存</th>
+          <th>距離(km)</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        
+        <tr>
+            <td>家音藥局</td>
+            <td><a href='http://maps.google.com/?q=台北市信義區民生東路5段73號'>台北市信義區民生東路5段73號</a></td>
+            <td>12</td>
+            <td>3.38</td>
+        </tr>
+        
+
+      </tbody>
+    </table>
+  </div>
+
+</body>
+
+</html>
