@@ -27,6 +27,7 @@ HTML = """<!DOCTYPE html>
           <th>地址</th>
           <th>成人口罩庫存</th>
           <th>距離(km)</th>
+          <th>電話</th>
         </tr>
       </thead>
       <tbody>
@@ -129,12 +130,14 @@ def render_mask_infos(mask_infos):
             <td><a href='http://maps.google.com/?q={1}'>{1}</a></td>
             <td>{2}</td>
             <td>{3}</td>
+            <td>{4}</td>
         </tr>
         """.format(
             mask_info.phar_name,
             mask_info.address,
             mask_info.adult_mask,
             mask_info.distance,
+            mask_info.phone
         )
     return html_snippet
 
