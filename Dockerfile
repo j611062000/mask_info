@@ -11,9 +11,9 @@ COPY util.py /apt/util.py
 RUN mkdir -p /app/templates
 
 COPY bin /apt/bin
-COPY cron/crontab /etc/cron.d/download_mask_dataset
-RUN chmod 0644 /etc/cron.d/download_mask_dataset
-RUN crontab /etc/cron.d/download_mask_dataset
+COPY cron/crontab /etc/cron.d/update_mask_info
+RUN chmod 0644 /etc/cron.d/update_mask_info
+RUN crontab /etc/cron.d/update_mask_info
 RUN touch /var/log/cron.log
 
 COPY app/app.py /app/app.py

@@ -1,1 +1,1 @@
-*/3 * * * * sh /apt/bin/download_mask_dataset.sh && python /apt/util.py
+*/3 * * * * sh /apt/bin/update_mask_info.sh

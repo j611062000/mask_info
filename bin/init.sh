@@ -1,4 +1,4 @@
 service cron start
-sh /apt/bin/download_mask_dataset.sh
+sh /apt/bin/update_mask_info.sh
 python /apt/util.py
 python app.py
