@@ -137,7 +137,7 @@ def render_mask_infos(mask_infos):
             mask_info.address,
             mask_info.adult_mask,
             mask_info.distance,
-            mask_info.phone
+            mask_info.phone,
         )
     return html_snippet
 
@@ -147,7 +147,7 @@ def read_api_key(API_KEY_PATH):
         return yaml.load(f)["api_key"]
 
 
-if __name__ == "__main__":
+def main():
     config = read_config("/etc/config.yaml")
     MASK_DATA_SOURCE_PATH = config["MASK_DATA_SOURCE"]
     API_KEY = read_api_key(config["API_KEY_PATH"])
@@ -165,3 +165,6 @@ if __name__ == "__main__":
 
     with open(HTML_FILE_TARGET, "w") as f:
         f.write(final_html)
+
+
+main()
