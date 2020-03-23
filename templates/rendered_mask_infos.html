@@ -1,0 +1,26 @@
+<h2>口罩地圖</h2>
+<p>更新時間: {{ time }}</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>藥局名稱</th>
+            <th>地址</th>
+            <th>成人口罩庫存</th>
+            <th>距離(km)</th>
+            <th>電話</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {%for mask_info in mask_infos%}
+        <tr>
+            <td>{{ mask_info.phar_name }}</td>
+            <td><a href='http://maps.google.com/?q={{ mask_info.address }}'>{{ mask_info.address }}</a></td>
+            <td>{{ mask_info.adult_mask }}</td>
+            <td>{{ mask_info.distance }}</td>
+            <td>{{ mask_info.phone }}</td>
+        </tr>
+        {%endfor%}
+
+    </tbody>
+</table>

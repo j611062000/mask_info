@@ -23,15 +23,17 @@ dir_to_be_watched = ["/app/templates"]
 @app.route("/")
 @cache.cached(timeout=120)
 def mask_info():
-    mask_infos = get_mask_infos()
-    return render_template(
-        "index.html", time=mask_infos[0].update_time, mask_infos=mask_infos
-    )
+    return render_template("loading_page.html")
 
 
 @app.route("/api/v1.0/mask_infos", methods=["GET"])
 def get_mask_infos_api():
-    return jsonify({"mask_infs": {1: 2}})
+    mask_infos = get_mask_infos()
+    return render_template(
+        "rendered_mask_infos.html",
+        time=mask_infos[0].update_time,
+        mask_infos=mask_infos,
+    )
 
 
 if __name__ == "__main__":
