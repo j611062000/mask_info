@@ -3,45 +3,6 @@ import requests
 import json
 import yaml
 
-HTML = """<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-
-<body>
-
-  <div class="container">
-    <h2>口罩地圖</h2>
-    <p>更新時間: {{time}}</p>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>藥局名稱</th>
-          <th>地址</th>
-          <th>成人口罩庫存</th>
-          <th>距離(km)</th>
-          <th>電話</th>
-        </tr>
-      </thead>
-      <tbody>
-
-        {{mask_infos}}
-
-      </tbody>
-    </table>
-  </div>
-
-</body>
-
-</html>"""
-
 
 class MaskInfo:
     def __init__(self, phar_name, address, phone, adult_mask, distance, update_time):
@@ -113,46 +74,16 @@ def get_MaskInfo_objs_by(mask_data_source_path, center, api_key, interest_area):
         return tmp
 
 
-def render_html(html_snippet, HTML, time):
-    final_html = HTML.replace("{{mask_infos}}", html_snippet)
-    final_html = final_html.replace("{{time}}", time)
-
-    return final_html
-
-
-def render_mask_infos(mask_infos):
-    html_snippet = ""
-
-    for mask_info in mask_infos:
-        html_snippet += """
-        <tr>
-            <td>{0}</td>
-            <td><a href='http://maps.google.com/?q={1}'>{1}</a></td>
-            <td>{2}</td>
-            <td>{3}</td>
-            <td>{4}</td>
-        </tr>
-        """.format(
-            mask_info.phar_name,
-            mask_info.address,
-            mask_info.adult_mask,
-            mask_info.distance,
-            mask_info.phone,
-        )
-    return html_snippet
-
-
 def read_api_key(API_KEY_PATH):
     with open(API_KEY_PATH) as f:
         return yaml.load(f)["api_key"]
 
 
-def update_mask_info():
+def get_mask_infos():
     config = read_config("/etc/config.yaml")
     MASK_DATA_SOURCE_PATH = config["MASK_DATA_SOURCE"]
     API_KEY = read_api_key(config["API_KEY_PATH"])
     CENTER = config["INIT_CENTER"]
-    # HTML_FILE_TARGET = config["HTML_FILE_TARGET"]
     INTEREST_AREA = "台北市信義區"
 
     maskInfos_objs = sorted(
@@ -161,9 +92,3 @@ def update_mask_info():
     )
 
     return maskInfos_objs
-    # html_snippet = render_mask_infos(maskInfos_objs)
-    # time = maskInfos_objs[0].update_time
-    # final_html = render_html(html_snippet, HTML, time)
-
-    # with open(HTML_FILE_TARGET, "w") as f:
-    #     f.write(final_html)

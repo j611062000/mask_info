@@ -18,6 +18,6 @@ RUN crontab /etc/cron.d/update_mask_info
 RUN touch /var/log/cron.log
 
 COPY app /app
-RUN pip install Flask requests Pyaml
+RUN pip install Flask requests Pyaml Flask-Caching
 
 CMD sh /apt/bin/init.sh

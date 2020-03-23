@@ -1,5 +1,3 @@
 MASK_DATA_SOURCE: "/var/data.json"
 API_KEY_PATH: "/root/secret/api_key.yaml"
 INIT_CENTER: "台北市信義區永吉路278巷47弄11號"
-HTML_FILE_TARGET: "/app/templates/mask_infos.html"
-HTML_TEMPLATE: "./template/html_template"

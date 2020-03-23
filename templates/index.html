@@ -27,7 +27,7 @@
             </thead>
             <tbody>
 
-                {{% for mask_info in mask_infos %}}
+                {%for mask_info in mask_infos%}
                 <tr>
                     <td>{{ mask_info.phar_name }}</td>
                     <td><a href='http://maps.google.com/?q={{ mask_info.address }}'>{{ mask_info.address }}</a></td>
@@ -35,7 +35,7 @@
                     <td>{{ mask_info.distance }}</td>
                     <td>{{ mask_info.phone }}</td>
                 </tr>
-                {{% endfor %}}
+                {%endfor%}
 
             </tbody>
         </table>
