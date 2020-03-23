@@ -1,3 +1,5 @@
+import jsontify
+
 from flask import Flask
 from flask import render_template
 from flask_caching import Cache
@@ -5,9 +7,9 @@ from util import get_mask_infos
 
 
 config = {
-    "DEBUG": True,          # some Flask specific configs
-    "CACHE_TYPE": "simple", # Flask-Caching related configs
-    "CACHE_DEFAULT_TIMEOUT": 300
+    "DEBUG": True,  # some Flask specific configs
+    "CACHE_TYPE": "simple",  # Flask-Caching related configs
+    "CACHE_DEFAULT_TIMEOUT": 300,
 }
 app = Flask(__name__)
 # tell Flask to use the above defined config
@@ -26,6 +28,11 @@ def mask_info():
     return render_template(
         "index.html", time=mask_infos[0].update_time, mask_infos=mask_infos
     )
+
+
+@app.route("/api/v1.0/mask_infos", methods=["GET"])
+def get_mask_infos():
+    return jsontify({"mask_infs": {1: 2}})
 
 
 if __name__ == "__main__":
