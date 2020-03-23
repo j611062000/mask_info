@@ -11,7 +11,7 @@ dir_to_be_watched = ["/app/templates"]
 def mask_info():
     maskInfos_objs = update_mask_info()
     return render_template(
-        "mask_infos.html", time=maskInfos_objs[0].update_time, mask_infos=maskInfos_objs
+        "index.html", time=maskInfos_objs[0].update_time, mask_infos=maskInfos_objs
     )
 
 
