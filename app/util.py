@@ -95,7 +95,7 @@ def init_MaskInfo_obj(data_set, center, api_key):
     )
 
 
-def get_MaskInfo_objs_by(mask_data_source_path, center, api_key):
+def get_MaskInfo_objs_by(mask_data_source_path, center, api_key, interest_area):
 
     tmp = list()
 
@@ -105,7 +105,7 @@ def get_MaskInfo_objs_by(mask_data_source_path, center, api_key):
         for data_set in mask_data_set["features"]:
             inventory = int(data_set["properties"]["mask_adult"])
 
-            if "台北市信義區" in data_set["properties"]["address"] and inventory > 1:
+            if interest_area in data_set["properties"]["address"] and inventory > 1:
                 mask_info = init_MaskInfo_obj(data_set, center, api_key)
 
                 if mask_info.distance < 5:
@@ -152,16 +152,18 @@ def update_mask_info():
     MASK_DATA_SOURCE_PATH = config["MASK_DATA_SOURCE"]
     API_KEY = read_api_key(config["API_KEY_PATH"])
     CENTER = config["INIT_CENTER"]
-    HTML_FILE_TARGET = config["HTML_FILE_TARGET"]
+    # HTML_FILE_TARGET = config["HTML_FILE_TARGET"]
+    INTEREST_AREA = "台北市信義區"
 
     maskInfos_objs = sorted(
-        get_MaskInfo_objs_by(MASK_DATA_SOURCE_PATH, CENTER, API_KEY),
+        get_MaskInfo_objs_by(MASK_DATA_SOURCE_PATH, CENTER, API_KEY, INTEREST_AREA),
         key=lambda x: x.distance,
     )
 
-    html_snippet = render_mask_infos(maskInfos_objs)
-    time = maskInfos_objs[0].update_time
-    final_html = render_html(html_snippet, HTML, time)
+    return maskInfos_objs
+    # html_snippet = render_mask_infos(maskInfos_objs)
+    # time = maskInfos_objs[0].update_time
+    # final_html = render_html(html_snippet, HTML, time)
 
-    with open(HTML_FILE_TARGET, "w") as f:
-        f.write(final_html)
+    # with open(HTML_FILE_TARGET, "w") as f:
+    #     f.write(final_html)

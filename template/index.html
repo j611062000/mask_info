@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>口罩地圖</h2>
+        <p>更新時間: {{ time }}</p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>藥局名稱</th>
+                    <th>地址</th>
+                    <th>成人口罩庫存</th>
+                    <th>距離(km)</th>
+                    <th>電話</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {{% for mask_info in mask_infos %}}
+                <tr>
+                    <td>{{ mask_info.phar_name }}</td>
+                    <td><a href='http://maps.google.com/?q={{ mask_info.address }}'>{{ mask_info.address }}</a></td>
+                    <td>{{ mask_info.adult_mask }}</td>
+                    <td>{{ mask_info.distance }}</td>
+                    <td>{{ mask_info.phone }}</td>
+                </tr>
+                {{% endfor %}}
+
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
