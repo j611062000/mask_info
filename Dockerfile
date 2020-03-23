@@ -6,6 +6,7 @@ RUN apt-get update -y && \
 WORKDIR /app
 
 COPY Config/config.yaml /etc/config.yaml
+COPY templates /app/templates
 
 RUN mkdir -p /app/templates
 
