@@ -1,7 +1,6 @@
-import jsontify
-
 from flask import Flask
 from flask import render_template
+from flask import jsonify
 from flask_caching import Cache
 from util import get_mask_infos
 
@@ -32,7 +31,7 @@ def mask_info():
 
 @app.route("/api/v1.0/mask_infos", methods=["GET"])
 def get_mask_infos():
-    return jsontify({"mask_infs": {1: 2}})
+    return jsonify({"mask_infs": {1: 2}})
 
 
 if __name__ == "__main__":
