@@ -79,10 +79,12 @@ def read_api_key(API_KEY_PATH):
         return yaml.load(f)["api_key"]
 
 
-def get_confirmed_today():
+def get_confirmed_numbers():
     url = "https://pomber.github.io/covid19/timeseries.json"
-    confirmed_today = json.loads(requests.get(url).text)["Taiwan*"][-1]["confirmed"]
-    return confirmed_today
+    data = json.loads(requests.get(url).text)["Taiwan*"]
+    confirmed_today = int(data[-1]["confirmed"]) - int(data[-2]["confirmed"])
+    total_confirmed = int(data[-1]["confirmed"])
+    return confirmed_today, total_confirmed
 
 
 def get_mask_infos():
@@ -101,4 +103,4 @@ def get_mask_infos():
 
 
 if __name__ == "__main__":
-    print(get_confirmed_numbers())
+    print(get_confirmed_today())
