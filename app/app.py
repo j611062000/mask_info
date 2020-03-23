@@ -21,12 +21,12 @@ dir_to_be_watched = ["/app/templates"]
 
 
 @app.route("/")
-@cache.cached(timeout=120)
 def mask_info():
     return render_template("loading_page.html")
 
 
 @app.route("/api/v1.0/mask_infos", methods=["GET"])
+@cache.cached(timeout=120)
 def get_mask_infos_api():
     mask_infos = get_mask_infos()
     return render_template(
