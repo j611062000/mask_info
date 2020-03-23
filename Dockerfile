@@ -7,7 +7,6 @@ WORKDIR /app
 
 COPY Config/config.yaml /etc/config.yaml
 COPY templates /app/templates
-COPY static /app/static
 
 RUN mkdir -p /app/templates
 
