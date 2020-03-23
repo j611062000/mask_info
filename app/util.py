@@ -79,6 +79,12 @@ def read_api_key(API_KEY_PATH):
         return yaml.load(f)["api_key"]
 
 
+def get_confirmed_today():
+    url = "https://pomber.github.io/covid19/timeseries.json"
+    confirmed_today = json.loads(requests.get(url).text)["Taiwan*"][-1]["confirmed"]
+    return confirmed_today
+
+
 def get_mask_infos():
     config = read_config("/etc/config.yaml")
     MASK_DATA_SOURCE_PATH = config["MASK_DATA_SOURCE"]
@@ -92,3 +98,7 @@ def get_mask_infos():
     )
 
     return maskInfos_objs
+
+
+if __name__ == "__main__":
+    print(get_confirmed_numbers())

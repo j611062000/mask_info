@@ -3,6 +3,7 @@ from flask import render_template
 from flask import jsonify
 from flask_caching import Cache
 from util import get_mask_infos
+from util import    
 
 
 config = {
@@ -29,10 +30,12 @@ def mask_info():
 @cache.cached(timeout=120)
 def get_mask_infos_api():
     mask_infos = get_mask_infos()
+    confirmed_today = get_confirmed_today()
     return render_template(
         "rendered_mask_infos.html",
         time=mask_infos[0].update_time,
         mask_infos=mask_infos,
+        confirmed_today=confirmed_today
     )
 
 
