@@ -30,7 +30,7 @@ def mask_info():
 
 
 @app.route("/api/v1.0/mask_infos", methods=["GET"])
-def get_mask_infos():
+def get_mask_infos_api():
     return jsonify({"mask_infs": {1: 2}})
 
 
