@@ -1,13 +1,13 @@
-<h2 class="pt-2">口罩地圖</h2>
-<p>更新時間: {{ time }}</p>
-<table class="table table-striped">
+<h2 class="pt-5">口罩地圖</h2>
+<h2 class="badge badge-primary ">更新時間: {{ time }}</h2>
+<table class="table table-striped shadow p-3 mb-5 bg-white rounded">
     <thead>
         <tr>
-            <th>藥局名稱</th>
-            <th>地址</th>
-            <th>成人口罩庫存</th>
-            <th>距離(km)</th>
-            <th>電話</th>
+            <th><img src="pharmacy.svg"></th>
+            <th><img src="pin.svg"></th>
+            <th><img src="mask.svg"></th>
+            <th><img src="distance.svg"></th>
+            <th><img src="call.svg"></th>
         </tr>
     </thead>
     <tbody>
@@ -20,7 +20,3 @@
             <td>{{ mask_info.distance }}</td>
             <td>{{ mask_info.phone }}</td>
         </tr>
-        {%endfor%}
-
-    </tbody>
-</table>
