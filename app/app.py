@@ -4,7 +4,17 @@ from flask_caching import Cache
 from util import get_mask_infos
 
 
+config = {
+    "DEBUG": True,          # some Flask specific configs
+    "CACHE_TYPE": "simple", # Flask-Caching related configs
+    "CACHE_DEFAULT_TIMEOUT": 300
+}
 app = Flask(__name__)
+# tell Flask to use the above defined config
+app.config.from_mapping(config)
+cache = Cache(app)
+cache.init_app(app)
+
 
 dir_to_be_watched = ["/app/templates"]
 
