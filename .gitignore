@@ -1,2 +1,3 @@
 mask_data.csv
 *.json
+*.code-workspace

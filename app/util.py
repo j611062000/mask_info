@@ -56,7 +56,7 @@ def init_MaskInfo_obj(data_set, center, api_key):
     )
 
 
-def get_MaskInfo_objs_by(mask_data_source_path, center, api_key, interest_area):
+def get_MaskInfo_objs_by_center(mask_data_source_path, center, api_key, interest_area):
 
     tmp = list()
 
@@ -85,6 +85,7 @@ def get_confirmed_numbers():
     confirmed_today = int(data[-1]["confirmed"]) - int(data[-2]["confirmed"])
     total_confirmed = int(data[-1]["confirmed"])
     date = data[-1]["date"]
+
     return confirmed_today, total_confirmed, date
 
 
@@ -96,8 +97,8 @@ def get_mask_infos():
     INTEREST_AREA = "台北市信義區"
 
     maskInfos_objs = sorted(
-        get_MaskInfo_objs_by(MASK_DATA_SOURCE_PATH,
-                             CENTER, API_KEY, INTEREST_AREA),
+        get_MaskInfo_objs_by_center(MASK_DATA_SOURCE_PATH,
+                                    CENTER, API_KEY, INTEREST_AREA),
         key=lambda x: x.distance,
     )
 
