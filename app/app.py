@@ -30,13 +30,14 @@ def mask_info():
 @cache.cached(timeout=120)
 def get_mask_infos_api():
     mask_infos = get_mask_infos()
-    confirmed_today, total_confirmed = get_confirmed_numbers()
+    confirmed_today, total_confirmed, date = get_confirmed_numbers()
     return render_template(
         "rendered_mask_infos.html",
         time=mask_infos[0].update_time,
         mask_infos=mask_infos,
         confirmed_today=confirmed_today,
         total_confirmed=total_confirmed,
+        date=date
     )
 
 

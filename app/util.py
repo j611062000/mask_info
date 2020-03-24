@@ -84,7 +84,8 @@ def get_confirmed_numbers():
     data = json.loads(requests.get(url).text)["Taiwan*"]
     confirmed_today = int(data[-1]["confirmed"]) - int(data[-2]["confirmed"])
     total_confirmed = int(data[-1]["confirmed"])
-    return confirmed_today, total_confirmed
+    date = data(data[-1]["date"])
+    return confirmed_today, total_confirmed, date
 
 
 def get_mask_infos():
@@ -95,7 +96,8 @@ def get_mask_infos():
     INTEREST_AREA = "台北市信義區"
 
     maskInfos_objs = sorted(
-        get_MaskInfo_objs_by(MASK_DATA_SOURCE_PATH, CENTER, API_KEY, INTEREST_AREA),
+        get_MaskInfo_objs_by(MASK_DATA_SOURCE_PATH,
+                             CENTER, API_KEY, INTEREST_AREA),
         key=lambda x: x.distance,
     )
 
@@ -103,4 +105,4 @@ def get_mask_infos():
 
 
 if __name__ == "__main__":
-    print(get_confirmed_today())
+    print(get_confirmed_numbers())
