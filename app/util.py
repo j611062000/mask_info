@@ -84,7 +84,7 @@ def get_confirmed_numbers():
     data = json.loads(requests.get(url).text)["Taiwan*"]
     confirmed_today = int(data[-1]["confirmed"]) - int(data[-2]["confirmed"])
     total_confirmed = int(data[-1]["confirmed"])
-    date = data(data[-1]["date"])
+    date = data[-1]["date"]
     return confirmed_today, total_confirmed, date
 
 
